@@ -34,7 +34,7 @@
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 			<string> "names" </string>
-			<string_array  len="60">
+			<string_array  len="59">
 				<string> "World" </string>
 				<string> "Node2D" </string>
 				<string> "__meta__" </string>
@@ -82,7 +82,6 @@
 				<string> "CollisionPolygon2D" </string>
 				<string> "build_mode" </string>
 				<string> "polygon" </string>
-				<string> "shape_range" </string>
 				<string> "trigger" </string>
 				<string> "Polygon2D" </string>
 				<string> "uv" </string>
@@ -99,9 +98,9 @@
 			<string> "node_count" </string>
 			<int> 7 </int>
 			<string> "nodes" </string>
-			<int_array  len="191"> 				-1, -1, 1, 0, -1, 1, 2, 0, 0, 0, 0, 4, 3, 1, 3, 5, 2, 6, 3, 2, 4, 0, 0, 0, 7, 7, -1, 15, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 6, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 21, 15, 22, 16, 0, 0, 0, 23, 23, -1, 23, 6, 17, 24, 12, 25, 18, 26, 19, 27, 12, 28, 20, 29, 19, 30, 12, 31, 21, 32, 19, 33, 12, 34, 22, 35, 19, 36, 12, 37, 23, 38, 19, 39, 12, 20, 15, 21, 15, 40, 24, 41, 14, 42, 13, 43, 14, 0, 3, 0, 44, 44, -1, 4, 45, 6, 46, 25, 47, 26, 48, 12, 0, 3, 0, 49, 49, -1, 10, 46, 25, 50, 27, 51, 28, 52, 24, 53, 29, 54, 24, 55, 30, 56, 14, 57, 12, 58, 31, 0, 0, 0, 7, 59, -1, 15, 8, 32, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 6, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 21, 15, 22, 33, 0 </int_array>
+			<int_array  len="189"> 				-1, -1, 1, 0, -1, 1, 2, 0, 0, 0, 0, 4, 3, 1, 3, 5, 2, 6, 3, 2, 4, 0, 0, 0, 7, 7, -1, 15, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 6, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 21, 15, 22, 16, 0, 0, 0, 23, 23, -1, 23, 6, 17, 24, 12, 25, 18, 26, 19, 27, 12, 28, 20, 29, 19, 30, 12, 31, 21, 32, 19, 33, 12, 34, 22, 35, 19, 36, 12, 37, 23, 38, 19, 39, 12, 20, 15, 21, 15, 40, 24, 41, 14, 42, 13, 43, 14, 0, 3, 0, 44, 44, -1, 3, 45, 6, 46, 25, 47, 12, 0, 3, 0, 48, 48, -1, 10, 46, 25, 49, 26, 50, 27, 51, 24, 52, 28, 53, 24, 54, 29, 55, 14, 56, 12, 57, 30, 0, 0, 0, 7, 58, -1, 15, 8, 31, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 6, 16, 12, 17, 12, 18, 13, 19, 14, 20, 15, 21, 15, 22, 32, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="34" shared="false">
+			<array  len="33" shared="false">
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
@@ -110,7 +109,7 @@
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> 1608.15, -545.723 </vector2>
+							<vector2> -264.474, -401.863 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -130,7 +129,7 @@
 							<string> "snap_step" </string>
 							<vector2> 35, 35 </vector2>
 							<string> "zoom" </string>
-							<real> 1.227737 </real>
+							<real> 0.598737 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -398,7 +397,6 @@
 				<resource  resource_type="Shape2D" path="local://5">  </resource>
 				<vector2> 0, 0 </vector2>
 				<vector2_array  len="9"> 					614.224, 585.32, 827.189, 575.093, 970.125, 534.096, 1078.71, 487.559, 1176.22, 384.512, 1262.65, 155.149, 1217.27, 393.492, 1191.86, 573.938, 1168.24, 737.969 </vector2_array>
-				<vector2> 0, 4 </vector2>
 				<vector2_array  len="0"> 					 </vector2_array>
 				<color> 1, 1, 1, 1 </color>
 				<resource name=""></resource>				<vector2> 1, 1 </vector2>

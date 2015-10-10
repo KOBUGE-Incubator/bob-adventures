@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="TileSet" subresource_count="5" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://gfx/grassLeft.png" type="Texture" index="0"></ext_resource>
-	<ext_resource path="res://gfx/grassRight.png" type="Texture" index="2"></ext_resource>
-	<ext_resource path="res://gfx/grassMid.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://medias/gfx/static/grassMid.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://medias/gfx/static/grassRight.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://medias/gfx/static/grassLeft.png" type="Texture" index="0"></ext_resource>
 	<resource type="ConcavePolygonShape2D" path="local://1">
 		<real name="custom_solver_bias"> 0 </real>
 		<vector2_array name="segments" len="8"> 			-35, -35, 35, -35, 35, -35, 35, 35, 35, 35, -35, 35, -35, 35, -35, -35 </vector2_array>
