@@ -47,7 +47,7 @@ func _integrate_forces(state):
 	
 	if not is_grounded:
 		var fix_velocity = (get_rot() - state.get_total_gravity().atan2()) * anti_angle_multiplier
-		state.set_angular_velocity( state.get_angular_velocity() + fix_velocity)
+		state.set_angular_velocity( state.get_angular_velocity() + fix_velocity )
 	
 	time += state.get_step()
 	

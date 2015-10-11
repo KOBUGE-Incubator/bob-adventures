@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="TileSet" subresource_count="5" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
-	<ext_resource path="res://medias/gfx/static/grassMid.png" type="Texture" index="1"></ext_resource>
+<resource_file type="TileSet" subresource_count="7" version="2.0" version_name="Godot Engine v2.0.alpha.custom_build">
 	<ext_resource path="res://medias/gfx/static/grassRight.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://medias/gfx/static/grassMid.png" type="Texture" index="1"></ext_resource>
 	<ext_resource path="res://medias/gfx/static/grassLeft.png" type="Texture" index="0"></ext_resource>
-	<resource type="ConcavePolygonShape2D" path="local://1">
+	<resource type="ConvexPolygonShape2D" path="local://1">
 		<real name="custom_solver_bias"> 0 </real>
-		<vector2_array name="segments" len="8"> 			-35, -35, 35, -35, 35, -35, 35, 35, 35, 35, -35, 35, -35, 35, -35, -35 </vector2_array>
+		<vector2_array name="points" len="4"> 			-35, 35, -35, -35, 35, -35, 35, 35 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://2">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			-35, 35, -35, -35, 35, -35, 35, 35 </vector2_array>
+
+	</resource>
+	<resource type="ConvexPolygonShape2D" path="local://3">
+		<real name="custom_solver_bias"> 0 </real>
+		<vector2_array name="points" len="4"> 			-35, 35, -35, -35, 35, -35, 35, 35 </vector2_array>
 
 	</resource>
 	<main_resource>
@@ -27,7 +37,7 @@
 		<resource name="1/occluder"></resource>		<vector2 name="1/navigation_offset"> 35, 35 </vector2>
 		<resource name="1/navigation"></resource>		<vector2 name="1/shape_offset"> 35, 35 </vector2>
 		<array name="1/shapes" len="1" shared="false">
-			<resource  resource_type="Shape2D" path="local://1">  </resource>
+			<resource  resource_type="Shape2D" path="local://2">  </resource>
 		</array>
 		<string name="2/name"> "PlatformEnd" </string>
 		<resource name="2/texture" external="2">  </resource>
@@ -37,7 +47,7 @@
 		<resource name="2/occluder"></resource>		<vector2 name="2/navigation_offset"> 35, 35 </vector2>
 		<resource name="2/navigation"></resource>		<vector2 name="2/shape_offset"> 35, 35 </vector2>
 		<array name="2/shapes" len="1" shared="false">
-			<resource  resource_type="Shape2D" path="local://1">  </resource>
+			<resource  resource_type="Shape2D" path="local://3">  </resource>
 		</array>
 
 	</main_resource>
