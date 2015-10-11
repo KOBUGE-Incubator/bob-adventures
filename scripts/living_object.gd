@@ -12,6 +12,10 @@ export var anti_angle_multiplier = 0.2
 export var jump_cooldown = 0.01
 
 var is_grounded = false
+var ground_pos = Vector2(0, 0)
+var _old_ground_pos
+var _old_ground_contacts = 0
+
 var _walk_direction = 0
 var _jump = false
 
@@ -31,25 +35,41 @@ func _ready():
 	set_use_custom_integrator( true )
 
 func _integrate_forces(state):
-	is_grounded = false
+	_old_ground_pos = ground_pos
+	ground_pos = Vector2(0, 0)
+	var ground_contacts = 0
 	for idx in range(state.get_contact_count()):
 		if get_shape(state.get_contact_local_shape(idx)) extends RayShape2D:
-			is_grounded = true
-
-	var additional_velocity = Vector2(0, 0)
-	if _jump:
-		additional_velocity += Vector2(0, -jump_speed).rotated(get_rot())
-		_jump = false
-	additional_velocity += Vector2(clamp(_walk_direction, -1, 1) * walk_speed, 0).rotated(is_grounded * get_rot())
-	_walk_direction = _walk_direction / 2
+			ground_pos += state.get_contact_collider_pos( idx )
+			ground_contacts += 1
 	
-	state.set_linear_velocity( state.get_linear_velocity() + additional_velocity )
+	ground_pos = ground_pos / ground_contacts - get_pos()
+	if is_grounded and ground_contacts > 0:
+		ground_pos = _old_ground_pos.linear_interpolate( ground_pos, 1/(_old_ground_contacts * ground_contacts)*2 )
+	_old_ground_contacts = ground_contacts
+	
+	is_grounded = (ground_contacts > 0)
+	
+
+	if _jump and is_grounded:
+		apply_impulse( ground_pos * Vector2(-1, 1), Vector2(0, -jump_speed).rotated(get_rot()) )
+	
+	var walk_vector = Vector2(clamp(_walk_direction, -1, 1) , 0)
+	if is_grounded:
+		walk_vector = walk_vector.rotated( get_rot() )
+		apply_impulse( ground_pos, walk_vector * walk_speed)
+	else:
+		state.set_linear_velocity( state.get_linear_velocity() + walk_vector * walk_speed )
 	
 	if not is_grounded:
 		var fix_velocity = (get_rot() - state.get_total_gravity().atan2()) * anti_angle_multiplier
 		state.set_angular_velocity( state.get_angular_velocity() + fix_velocity )
 	
 	time += state.get_step()
+	_walk_direction = _walk_direction / 2
+	_jump = false
+	if not is_grounded and _jump_cooldown_time > time:
+		_jump_cooldown_time += (time - _jump_cooldown_time)/2
 	
 	state.integrate_forces()
 
