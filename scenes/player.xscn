@@ -24,7 +24,7 @@
 	</resource>
 	<resource type="RayShape2D" path="local://5">
 		<real name="custom_solver_bias"> 0 </real>
-		<real name="length"> 14.389966 </real>
+		<real name="length"> 14 </real>
 
 	</resource>
 	<main_resource>
@@ -34,7 +34,7 @@
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 			<string> "names" </string>
-			<string_array  len="85">
+			<string_array  len="86">
 				<string> "Player" </string>
 				<string> "RigidBody2D" </string>
 				<string> "input/pickable" </string>
@@ -53,15 +53,6 @@
 				<string> "shapes/4/shape" </string>
 				<string> "shapes/4/transform" </string>
 				<string> "shapes/4/trigger" </string>
-				<string> "shapes/5/shape" </string>
-				<string> "shapes/5/transform" </string>
-				<string> "shapes/5/trigger" </string>
-				<string> "shapes/6/shape" </string>
-				<string> "shapes/6/transform" </string>
-				<string> "shapes/6/trigger" </string>
-				<string> "shapes/7/shape" </string>
-				<string> "shapes/7/transform" </string>
-				<string> "shapes/7/trigger" </string>
 				<string> "collision/layers" </string>
 				<string> "collision/mask" </string>
 				<string> "mode" </string>
@@ -81,13 +72,14 @@
 				<string> "damp_override/angular" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
-				<string> "force_contacts_monitor" </string>
-				<string> "max_health" </string>
-				<string> "ground_raycast_path" </string>
-				<string> "walk_speed" </string>
 				<string> "jump_speed" </string>
-				<string> "anti_angle_multiplier" </string>
+				<string> "wall_jump_speed" </string>
+				<string> "same_wall_jump_speed" </string>
+				<string> "walk_speed" </string>
+				<string> "air_speed" </string>
 				<string> "jump_cooldown" </string>
+				<string> "side_rays" </string>
+				<string> "side_directions" </string>
 				<string> "Sprite" </string>
 				<string> "transform/pos" </string>
 				<string> "texture" </string>
@@ -107,26 +99,35 @@
 				<string> "drag_margin/top" </string>
 				<string> "drag_margin/right" </string>
 				<string> "drag_margin/bottom" </string>
+				<string> "Head" </string>
 				<string> "CollisionShape2D" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
 				<string> "_update_shape_index" </string>
+				<string> "Feet" </string>
 				<string> "CollisionPolygon2D" </string>
 				<string> "build_mode" </string>
 				<string> "polygon" </string>
 				<string> "shape_range" </string>
-				<string> "CollisionShape2D 2" </string>
+				<string> "Ray" </string>
+				<string> "ground_rays" </string>
+				<string> "Node2D" </string>
+				<string> "left" </string>
+				<string> "RayCast2D" </string>
+				<string> "enabled" </string>
+				<string> "cast_to" </string>
+				<string> "layer_mask" </string>
+				<string> "right" </string>
+				<string> "left_ray" </string>
 				<string> "transform/rot" </string>
-				<string> "CollisionShape2D3" </string>
-				<string> "CollisionShape2D4" </string>
-				<string> "CollisionShape2D5" </string>
+				<string> "right_ray" </string>
 			</string_array>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 11 </int>
 			<string> "nodes" </string>
-			<int_array  len="255"> 				-1, -1, 1, 0, -1, 51, 2, 0, 3, 1, 4, 2, 5, 0, 6, 3, 7, 4, 8, 0, 9, 5, 10, 4, 11, 0, 12, 6, 13, 4, 14, 0, 15, 7, 16, 8, 17, 0, 18, 7, 19, 9, 20, 0, 21, 7, 22, 10, 23, 0, 24, 7, 25, 11, 26, 0, 27, 12, 28, 12, 29, 13, 30, 14, 31, 15, 32, 16, 33, 14, 34, 0, 35, 17, 36, 13, 37, 0, 38, 0, 39, 18, 40, 19, 41, 20, 42, 21, 43, 22, 44, 23, 45, 24, 46, 18, 47, 25, 48, 26, 49, 27, 50, 28, 51, 20, 52, 29, 0, 0, 0, 53, 53, -1, 2, 54, 30, 55, 31, 0, 0, 0, 56, 56, -1, 16, 54, 30, 57, 12, 58, 0, 59, 18, 60, 32, 61, 33, 62, 34, 63, 34, 64, 35, 65, 35, 66, 18, 67, 18, 68, 16, 69, 16, 70, 16, 71, 16, 0, 0, 0, 72, 72, -1, 4, 54, 36, 73, 1, 74, 0, 75, 13, 0, 0, 0, 76, 76, -1, 5, 54, 37, 77, 13, 78, 38, 79, 39, 74, 0, 0, 0, 0, 72, 80, -1, 5, 54, 40, 81, 41, 73, 7, 74, 0, 75, 42, 0, 0, 0, 72, 82, -1, 5, 54, 43, 81, 44, 73, 7, 74, 0, 75, 45, 0, 0, 0, 72, 83, -1, 4, 54, 46, 73, 7, 74, 0, 75, 47, 0, 0, 0, 72, 84, -1, 4, 54, 48, 73, 7, 74, 0, 75, 49, 0 </int_array>
+			<int_array  len="261"> 				-1, -1, 1, 0, -1, 43, 2, 0, 3, 1, 4, 2, 5, 0, 6, 3, 7, 4, 8, 0, 9, 5, 10, 4, 11, 0, 12, 6, 13, 4, 14, 0, 15, 7, 16, 8, 17, 0, 18, 9, 19, 9, 20, 10, 21, 11, 22, 12, 23, 13, 24, 11, 25, 0, 26, 10, 27, 14, 28, 0, 29, 0, 30, 15, 31, 16, 32, 17, 33, 18, 34, 19, 35, 20, 36, 21, 37, 22, 38, 23, 39, 24, 40, 25, 41, 26, 42, 27, 43, 28, 44, 29, 0, 0, 0, 45, 45, -1, 2, 46, 30, 47, 31, 0, 0, 0, 48, 48, -1, 16, 46, 30, 49, 9, 50, 0, 51, 15, 52, 32, 53, 33, 54, 34, 55, 34, 56, 35, 57, 35, 58, 15, 59, 15, 60, 36, 61, 36, 62, 36, 63, 36, 0, 0, 0, 65, 64, -1, 4, 46, 37, 66, 1, 67, 0, 68, 14, 0, 0, 0, 70, 69, -1, 5, 46, 38, 71, 14, 72, 39, 73, 40, 67, 0, 0, 0, 0, 65, 74, -1, 4, 46, 41, 66, 7, 67, 0, 68, 42, 0, 0, 0, 76, 75, -1, 0, 0, 6, 0, 78, 77, -1, 4, 46, 43, 79, 15, 80, 44, 81, 9, 0, 6, 0, 78, 82, -1, 4, 46, 45, 79, 15, 80, 44, 81, 9, 0, 0, 0, 78, 83, -1, 5, 46, 46, 84, 47, 79, 15, 80, 48, 81, 9, 0, 0, 0, 78, 85, -1, 5, 46, 49, 84, 50, 79, 15, 80, 48, 81, 9, 0 </int_array>
 			<string> "variants" </string>
-			<array  len="50" shared="false">
+			<array  len="51" shared="false">
 				<bool> False </bool>
 				<resource  resource_type="Shape2D" path="local://1">  </resource>
 				<matrix32> 1, -0, 0, 1, 0, -55.8475 </matrix32>
@@ -135,31 +136,28 @@
 				<resource  resource_type="Shape2D" path="local://7">  </resource>
 				<resource  resource_type="Shape2D" path="local://8">  </resource>
 				<resource  resource_type="Shape2D" path="local://5">  </resource>
-				<matrix32> 0.951057, -0.309017, 0.309017, 0.951057, 14, -12.8475 </matrix32>
-				<matrix32> 0.951057, 0.309017, -0.309017, 0.951057, -15, -12.8475 </matrix32>
-				<matrix32> 1, -0, 0, 1, -10, -12 </matrix32>
-				<matrix32> 1, -0, 0, 1, 10, -12 </matrix32>
+				<matrix32> 1, -0, 0, 1, 0, -12 </matrix32>
 				<int> 1 </int>
-				<int> 0 </int>
+				<int> 2 </int>
 				<real> 1 </real>
 				<real> 0.5 </real>
-				<real> 0.2 </real>
-				<int> 2 </int>
+				<real> 0.1 </real>
+				<int> 0 </int>
 				<bool> True </bool>
 				<vector2> 0, 0 </vector2>
 				<real> 0 </real>
-				<real> 1.01 </real>
+				<real> -1 </real>
 				<real> 3 </real>
 				<resource  external="0">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "ofs" </string>
-							<vector2> -276.204, -109.909 </vector2>
+							<vector2> -786.234, -372.763 </vector2>
 							<string> "snap_grid" </string>
 							<bool> False </bool>
 							<string> "snap_offset" </string>
@@ -179,7 +177,7 @@
 							<string> "snap_step" </string>
 							<vector2> 35, 35 </vector2>
 							<string> "zoom" </string>
-							<real> 2.050546 </real>
+							<real> 1.108033 </real>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -287,31 +285,38 @@
 						<int> 0 </int>
 					</dictionary>
 				</dictionary>
-				<real> 10 </real>
-				<node_path> "ray_down" </node_path>
-				<real> 20 </real>
-				<real> 1200 </real>
-				<real> 0.4 </real>
+				<real> 1000 </real>
+				<real> 700 </real>
+				<real> 100 </real>
+				<real> 30 </real>
+				<real> 15 </real>
+				<real> 0.25 </real>
+				<array  len="2" shared="false">
+					<node_path> "left_ray" </node_path>
+					<node_path> "right_ray" </node_path>
+				</array>
+				<vector2_array  len="2"> 					1, -1, -1, -1 </vector2_array>
 				<vector2> 0, -42.8475 </vector2>
 				<resource  external="1">  </resource>
 				<real> 4 </real>
 				<vector2> 1.5, 1.5 </vector2>
 				<int> -10000000 </int>
 				<int> 10000000 </int>
+				<real> 0.2 </real>
 				<vector2> 0, -55.8475 </vector2>
 				<vector2> 0, -12.8475 </vector2>
 				<vector2_array  len="10"> 					-17.0524, 0.0372868, -17.1345, 12.9289, -11.6485, 13.5538, -10.5374, 4.45683, 8.42048, 4.52627, 11.4065, 12.9289, 15.2259, 12.3039, 15.6059, 0.87468, 20.7374, -19.4525, -21.6504, -20.4838 </vector2_array>
 				<vector2> 1, 3 </vector2>
-				<vector2> 14, -12.8475 </vector2>
-				<real> 18 </real>
+				<vector2> 0, -12 </vector2>
 				<int> 4 </int>
-				<vector2> -15, -12.8475 </vector2>
-				<real> -18 </real>
-				<int> 5 </int>
-				<vector2> -10, -12 </vector2>
-				<int> 6 </int>
-				<vector2> 10, -12 </vector2>
-				<int> 7 </int>
+				<vector2> -12, -12 </vector2>
+				<vector2> 0, 14 </vector2>
+				<vector2> 12, -12 </vector2>
+				<vector2> -24, -24 </vector2>
+				<real> -90 </real>
+				<vector2> 0, 20 </vector2>
+				<vector2> 24, -24 </vector2>
+				<real> 90 </real>
 			</array>
 			<string> "version" </string>
 			<int> 1 </int>
