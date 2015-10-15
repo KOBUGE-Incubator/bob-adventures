@@ -65,11 +65,12 @@ func _fixed_process(delta):
 		walk_vector.x += 1
 	if Input.is_action_pressed( "left" ):
 		walk_vector.x -= 1
-	walk_vector -= walk_vector * clamp( get_linear_velocity().dot(walk_vector), -1, 0)
 	
 	if is_grounded:
+		walk_vector -= walk_vector * clamp( get_linear_velocity().dot(walk_vector * walk_speed), -1, 0) * 2
 		apply_impulse( Vector2(0, 0), walk_vector * walk_speed )
 	else:
+		walk_vector -= walk_vector * clamp( get_linear_velocity().dot(walk_vector * air_speed), -1, 0) * 2
 		apply_impulse( Vector2(0, 0), walk_vector * air_speed )
 	
 	time += delta
