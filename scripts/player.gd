@@ -12,6 +12,9 @@ const air_speed = 300
 var side_rays = [NodePath("arrays/left_ray"),NodePath("arrays/right_ray")]
 var ground_rays = [NodePath("arrays/ground"), NodePath("arrays/ground2")]
 
+var spawn
+var limit = null
+
 onready var animation_player = get_node("AnimationPlayer")
 
 func _ready():
@@ -27,11 +30,10 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	if get_pos().y > 6000:
-		current_dir = 0
-		set_pos(Vector2(0,0))
-		set_linear_velocity(Vector2(0,0))
-	
+	if limit != null:
+		if get_pos().y > limit:
+			respawn()
+		
 	var colliders = 0
 	is_grounded = false
 	for i in range(ground_rays.size()):
@@ -42,6 +44,10 @@ func _fixed_process(delta):
 	# constant velocity on ground
 	if is_grounded:
 		set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
+	else:
+		if abs(get_linear_velocity().x) < 20:
+			set_linear_velocity(Vector2(0, get_linear_velocity().y))
+			current_dir = 0
 	
 	if is_grounded and colliders == 2:
 		get_node("Particles2D").set_emitting(true)
@@ -63,9 +69,19 @@ func _input(event):
 	if event.is_action_pressed("jump"):
 		jump()
 
+func respawn():
+	current_dir = 0
+	set_pos(spawn)
+	set_linear_velocity(Vector2(0,0))
+
+
 func jump():
 	if is_grounded:
-		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed) )
+		var velocity_add = 0
+		if get_linear_velocity().y < 0:
+			velocity_add = int(get_linear_velocity().y/3)
+		print(velocity_add)
+		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed+velocity_add) )
 	else:
 		### If right, go left, if left, go right (wall-jump)
 		if side_rays[0].is_colliding() and side_rays[0].get_collider():
