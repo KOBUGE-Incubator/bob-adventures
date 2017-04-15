@@ -1,77 +1,101 @@
 # player.gd -> living_object.gd -> RigidBody2D
 extends RigidBody2D#"living_object.gd"
 
-var ground_rays
 var local_ground_position = Vector2(0, 0)
 var time = 0.0
 var jump_cooldown_time = 0.0
 var last_jump_side = -1
+var speed_type
+var current_dir = 0
+var is_grounded = false
 
-export var jump_speed = 100.0
-export var wall_jump_speed = 600.0
-export var same_wall_jump_speed = 600.0
-export var walk_speed = 10.0
-export var air_speed = 10.0
-export var jump_cooldown = 0.1
-export var side_rays = [NodePath("left_ray"), NodePath("right_ray")]
-export var side_directions = Vector2Array([Vector2(0.5, -1), Vector2(-0.5, -1)])
+const jump_speed = 800
+const wall_jump_speed = 500
+const walk_speed = 700
+const air_speed = 300
+const jump_cooldown = 0.2
+var side_rays = [NodePath("arrays/left_ray"),NodePath("arrays/right_ray")]
+const side_directions = Vector2Array([Vector2(0.5, -1), Vector2(-0.5, -1)])
+var ground_rays = [NodePath("arrays/ground"), NodePath("arrays/ground2")]
+
+onready var animation_player = get_node("AnimationPlayer")
 
 func _ready():
-	print(jump_speed)
-
-	ground_rays = get_node("ground_rays").get_children()
-	for ray in ground_rays:
-		ray.add_exception(self)
+	for i in range(ground_rays.size()):
+		ground_rays[i] = get_node(ground_rays[i])
+		ground_rays[i].add_exception(self)
 	
 	for i in range(side_rays.size()):
 		side_rays[i] = get_node(side_rays[i])
 		side_rays[i].add_exception(self)
 	
-	
+	set_process_input(true)
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	var is_grounded = false
-	for ray in ground_rays:
-		if ray.is_colliding() and ray.get_collider():
+	if get_pos().y > 6000:
+		current_dir = 0
+		set_pos(Vector2(0,0))
+		set_linear_velocity(Vector2(0,0))
+	
+	var colliders = 0
+	is_grounded = false
+	for i in range(ground_rays.size()):
+		if ground_rays[i].is_colliding() and ground_rays[i].get_collider():
 			is_grounded = true
-			break
+			colliders += 1
 	
-	# Jumping
+	# constant velocity on ground
 	if is_grounded:
-		last_jump_side = -1
-	if Input.is_action_pressed( "jump" ) and jump_cooldown_time < time:
-		if is_grounded:
-			jump_cooldown_time = time + jump_cooldown
-			apply_impulse( local_ground_position, Vector2(0, -jump_speed) )
-		else:
-			var wall_jump = false
-			for i in range(side_rays.size()):
-				var ray = side_rays[i]
-				var direction = side_directions[i]
-				if ray.is_colliding() and ray.get_collider():
-					jump_cooldown_time = time + jump_cooldown
-					wall_jump = true
-					if last_jump_side == i:
-						apply_impulse( ray.get_collision_point(), direction * same_wall_jump_speed )
-					else:
-						apply_impulse( ray.get_collision_point(), direction * wall_jump_speed )
-					last_jump_side = i
-					break
+		set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
 	
-	# Walk/Airwalk-ing
-	var walk_vector = Vector2(0 , 0)
-	if Input.is_action_pressed( "right" ):
-		walk_vector.x += 1
-	if Input.is_action_pressed( "left" ):
-		walk_vector.x -= 1
-	
-	if is_grounded:
-		walk_vector -= walk_vector * clamp( get_linear_velocity().dot(walk_vector * walk_speed), -1, 0) * 2
-		apply_impulse( Vector2(0, 0), walk_vector * walk_speed )
+	if is_grounded and colliders == 2:
+		get_node("Particles2D").set_emitting(true)
 	else:
-		walk_vector -= walk_vector * clamp( get_linear_velocity().dot(walk_vector * air_speed), -1, 0) * 2
-		apply_impulse( Vector2(0, 0), walk_vector * air_speed )
+		get_node("Particles2D").set_emitting(false)
 	
 	time += delta
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	elif event.is_action_pressed("fullscreen"):
+		OS.set_window_fullscreen(!OS.is_window_fullscreen())
+	
+	if event.is_action_pressed("left"):
+		go_to_dir(-1)
+	elif event.is_action_pressed("right"):
+		go_to_dir(1)
+	elif event.is_action_pressed("down"):
+		go_to_dir(0)
+	if event.is_action_pressed("jump") and jump_cooldown_time < time:
+		jump()
+
+func jump():
+	if is_grounded:
+		jump_cooldown_time = time + jump_cooldown
+		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed) )
+	else:
+		var wall_jump = false
+		### If right, go left, if left, go right (wall-jump)
+		if side_rays[0].is_colliding() and side_rays[0].get_collider():
+			wall_jump = true
+			current_dir = 1
+			set_linear_velocity(Vector2(wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
+			animation_player.get_animation("jump").track_set_key_value(1, 0, 30)
+			animation_player.play("jump")
+			jump_cooldown_time = time + jump_cooldown
+		if side_rays[1].is_colliding() and side_rays[1].get_collider():
+			wall_jump = true
+			current_dir = -1
+			set_linear_velocity(Vector2(-wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
+			animation_player.get_animation("jump").track_set_key_value(1, 0, -30)
+			animation_player.play("jump")
+			jump_cooldown_time = time + jump_cooldown
+
+func go_to_dir(dir):
+	if current_dir == -dir or abs(get_linear_velocity().x) <= air_speed or dir == 0  and not is_grounded:
+		current_dir = dir
+		set_linear_velocity(Vector2(air_speed*dir, get_linear_velocity().y))
+	else:
+		current_dir = dir
