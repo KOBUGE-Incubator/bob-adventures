@@ -1,12 +1,19 @@
 # player.gd -> living_object.gd -> RigidBody2D
 extends RigidBody2D#"living_object.gd"
 
+#On debug = true:
+#F5 : previous_level
+#F1 : infinite jumps
+
+const debug = false
+var debug_infinite_jump = false
+
 var local_ground_position = Vector2(0, 0)
 var current_dir = 0
 var is_grounded = false
 
 const jump_speed = 800
-const wall_jump_speed = 500
+const wall_jump_speed = 600
 const walk_speed = 700
 const air_speed = 300
 var side_rays = [NodePath("arrays/left_ray"),NodePath("arrays/right_ray")]
@@ -49,6 +56,9 @@ func _fixed_process(delta):
 			set_linear_velocity(Vector2(0, get_linear_velocity().y))
 			current_dir = 0
 	
+	if debug_infinite_jump:
+		is_grounded = true
+	
 	if is_grounded and colliders == 2:
 		get_node("Particles2D").set_emitting(true)
 	else:
@@ -68,11 +78,17 @@ func _input(event):
 		go_to_dir(0)
 	if event.is_action_pressed("jump"):
 		jump()
+	
+	if debug:
+		if event.is_action_pressed("debug[next_level]"):
+			get_parent().next_level()
+		elif event.is_action_released("debug[infinite_jumps]"):
+			debug_infinite_jump = !debug_infinite_jump
 
 func respawn():
 	current_dir = 0
-	set_pos(spawn)
 	set_linear_velocity(Vector2(0,0))
+	set_pos(spawn)
 
 
 func jump():
@@ -80,7 +96,6 @@ func jump():
 		var velocity_add = 0
 		if get_linear_velocity().y < 0:
 			velocity_add = int(get_linear_velocity().y/3)
-		print(velocity_add)
 		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed+velocity_add) )
 	else:
 		### If right, go left, if left, go right (wall-jump)

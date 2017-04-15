@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/end.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/arrow.tscn" type="PackedScene" id=3]
 
 [node name="level_3" type="TileMap"]
 
@@ -30,5 +31,14 @@ transform/pos = Vector2( 2304, -448 )
 [node name="limit" type="Position2D" parent="."]
 
 transform/pos = Vector2( 0, 1536 )
+
+[node name="Arrow" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -64, -128 )
+transform/rot = -90.0
+
+[node name="Arrow1" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 1408, 128 )
 
 

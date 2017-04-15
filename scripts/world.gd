@@ -8,17 +8,19 @@ func _ready():
 	load_level(level)
 
 func load_level(level_number):
-	var level_load = load(str("res://scenes/levels/level_", str(level), ".tscn"))
+	var level_load = load(str("res://scenes/levels/level_", str(level_number), ".tscn"))
 	if level_load != null:
 		for child in get_children():
-			if child.get_name().begins_with("level"):
+			if child extends TileMap:
 				child.queue_free()
-		add_child(level_load.instance())
-		player.spawn = get_node(str("level_",str(level),"/spawn")).get_pos()
-		player.limit = get_node(str("level_",str(level),"/limit")).get_pos().y
-		player.respawn()
+		current_level = level_number
+		level = current_level
+		var level_loaded = level_load.instance()
+		add_child(level_loaded)
 		get_node("Background").reload_colors()
-		current_level = level
+		player.spawn = level_loaded.get_node("spawn").get_pos()
+		player.limit = level_loaded.get_node("limit").get_pos().y
+		player.respawn()
 	else:
 		print(str("level level_",str(level), " doesn't exist"))
 		level = current_level
