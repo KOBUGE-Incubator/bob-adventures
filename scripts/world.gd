@@ -4,9 +4,6 @@ var level = 1
 
 func _ready():
 	load_level(level)
-#	current_level.instance()
-#	add_child(current_level)
-	set_process_input(true)
 
 func load_level(level_number):
 	var level_load = load(str("res://scenes/levels/level_", str(level), ".tscn"))
