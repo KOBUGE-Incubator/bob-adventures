@@ -4,8 +4,6 @@ extends RigidBody2D#"living_object.gd"
 #On debug = true:
 #F5 : previous_level
 #F1 : infinite jumps
-
-const debug = false
 var debug_infinite_jump = false
 
 var local_ground_position = Vector2(0, 0)
@@ -21,6 +19,7 @@ var ground_rays = [NodePath("arrays/ground"), NodePath("arrays/ground2")]
 
 var spawn
 var limit = null
+var respawned = false
 
 onready var animation_player = get_node("AnimationPlayer")
 
@@ -45,20 +44,25 @@ func _fixed_process(delta):
 	is_grounded = false
 	for i in range(ground_rays.size()):
 		if ground_rays[i].is_colliding() and ground_rays[i].get_collider():
-			is_grounded = true
-			colliders += 1
+			if not ground_rays[i].get_collider().get_name().begins_with("jumppad"):
+				is_grounded = true
+				colliders += 1
 	
 	# constant velocity on ground
 	if is_grounded:
 		set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
 	else:
+		### Override velocity to stop on a collision
 		if abs(get_linear_velocity().x) < 20:
 			set_linear_velocity(Vector2(0, get_linear_velocity().y))
 			current_dir = 0
+		### Change direction if speed is different from current_dir (for jumppads)
+		if get_linear_velocity().x/current_dir < 0:
+			current_dir = -current_dir
 	
 	if debug_infinite_jump:
 		is_grounded = true
-	
+	### activate particles on a plane ground (not on ramps)
 	if is_grounded and colliders == 2:
 		get_node("Particles2D").set_emitting(true)
 	else:
@@ -79,7 +83,7 @@ func _input(event):
 	if event.is_action_pressed("jump"):
 		jump()
 	
-	if debug:
+	if global.debug:
 		if event.is_action_pressed("debug[next_level]"):
 			get_parent().next_level()
 		elif event.is_action_released("debug[infinite_jumps]"):
@@ -89,6 +93,7 @@ func respawn():
 	current_dir = 0
 	set_linear_velocity(Vector2(0,0))
 	set_pos(spawn)
+	respawned = true
 
 
 func jump():

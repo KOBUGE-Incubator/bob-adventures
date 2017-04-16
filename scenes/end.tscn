@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 48 )
+extents = Vector2( 64, 64 )
 
 [sub_resource type="Animation" id=2]
 
@@ -19,37 +19,72 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Sprite:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 0.25, 4 ), "update":0, "values":[ Vector2( 100, 60 ), Vector2( 60, 100 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 0.25, 4 ),
+"update": 0,
+"values": [ Vector2( 100, 60 ), Vector2( 60, 100 ) ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Sprite1:transform/scale")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 0.25, 4 ), "update":0, "values":[ Vector2( 60, 100 ), Vector2( 100, 60 ) ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 0.3 ),
+"transitions": FloatArray( 0.25, 4 ),
+"update": 0,
+"values": [ Vector2( 60, 100 ), Vector2( 100, 60 ) ]
+}
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprites/Sprite2:transform/rot")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/2/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprites/Sprite3:transform/rot")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/3/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprites/Sprite4:transform/rot")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/4/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprites/Sprite5:transform/rot")
 tracks/5/interp = 1
 tracks/5/imported = false
-tracks/5/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/5/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/6/type = "value"
 tracks/6/path = NodePath("Sprites/Sprite6:transform/rot")
 tracks/6/interp = 1
 tracks/6/imported = false
-tracks/6/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/6/keys = {
+"times": FloatArray( 0, 0.6 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 
 [node name="end" type="Area2D"]
 

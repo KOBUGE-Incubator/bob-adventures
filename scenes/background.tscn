@@ -13,42 +13,82 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite 1:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite 2:transform/rot")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite 3:transform/rot")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/2/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite 4:transform/rot")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/3/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite 5:transform/rot")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/4/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/5/type = "value"
 tracks/5/path = NodePath("Sprite 6:transform/rot")
 tracks/5/interp = 1
 tracks/5/imported = false
-tracks/5/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, 135.0 ] }
+tracks/5/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, 135.0 ]
+}
 tracks/6/type = "value"
 tracks/6/path = NodePath("Sprite 7:transform/rot")
 tracks/6/interp = 1
 tracks/6/imported = false
-tracks/6/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/6/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 tracks/7/type = "value"
 tracks/7/path = NodePath("Sprite 8:transform/rot")
 tracks/7/interp = 1
 tracks/7/imported = false
-tracks/7/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 45.0, -45.0 ] }
+tracks/7/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 45.0, -45.0 ]
+}
 
 [node name="Background" type="ParallaxBackground"]
 
