@@ -5,6 +5,7 @@ extends RigidBody2D#"living_object.gd"
 #F5 : previous_level
 #F1 : infinite jumps
 var debug_infinite_jump = false
+var before_dir = 0
 
 var local_ground_position = Vector2(0, 0)
 var current_dir = 0
@@ -23,6 +24,7 @@ var spawn
 var limit = null
 var respawned = false
 
+onready var walking = get_node("Walking")
 onready var animation_player = get_node("AnimationPlayer")
 
 func _ready():
@@ -74,7 +76,10 @@ func _input(event):
 		if root.get_node("World") != null:
 			root.get_node("World").next_level("menu")
 		else:
-			get_tree().quit()
+			if root.get_node("Menu").menu_shown:
+				root.get_node("Menu").hide_menu()
+			else:
+				get_tree().quit()
 	elif event.is_action_pressed("fullscreen"):
 		OS.set_window_fullscreen(!OS.is_window_fullscreen())
 	
@@ -96,9 +101,13 @@ func _input(event):
 func respawn():
 	current_dir = 0
 	set_linear_velocity(Vector2(0,0))
+	walking.stop()
+	get_node("Sprite").set_scale(Vector2(0.5, 0.5))
+	get_node("Sprite1").set_scale(Vector2(0.45, 0.45))
+	get_node("Sprite").set_rotd(0)
+	get_node("Sprite1").set_rotd(0)
 	set_pos(spawn)
 	respawned = true
-
 
 func jump():
 	if is_grounded:
@@ -113,22 +122,33 @@ func jump():
 		if side_rays[0].is_colliding() and side_rays[0].get_collider():
 			current_dir = 1
 			set_linear_velocity(Vector2(wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
-			animation_player.get_animation("walljump").track_set_key_value(1, 0, 30)
 			animation_player.play("walljump")
+			set_dir(current_dir)
 			PlaySound("walljump")
 		if side_rays[1].is_colliding() and side_rays[1].get_collider():
 			current_dir = -1
 			set_linear_velocity(Vector2(-wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
-			animation_player.get_animation("walljump").track_set_key_value(1, 0, -30)
 			animation_player.play("walljump")
+			set_dir(current_dir)
 			PlaySound("walljump")
 
-func go_to_dir(dir):
-	if current_dir == -dir or abs(get_linear_velocity().x) <= air_speed or dir == 0  and not is_grounded:
-		current_dir = dir
-		set_linear_velocity(Vector2(air_speed*dir, get_linear_velocity().y))
+func go_to_dir(dir, smooth=false):
+	if current_dir == -dir or abs(get_linear_velocity().x) <= air_speed or dir == 0:
+		set_dir(dir)
+		if not is_grounded and not smooth:
+			set_linear_velocity(Vector2(air_speed*dir, get_linear_velocity().y))
 	else:
 		current_dir = dir
+
+func set_dir(dir):
+	if current_dir != 0:
+		before_dir = current_dir
+		walking.set_speed(current_dir*0.15)
+	if not walking.is_playing():
+		walking.play("idle")
+	current_dir = dir
+	if not dir == 0:
+		walking.set_speed(current_dir)
 
 func PlaySound(sound):
 	if global.sound:

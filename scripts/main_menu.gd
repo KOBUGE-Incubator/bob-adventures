@@ -48,7 +48,7 @@ func show_menu(object=null):
 		music_button.set_disabled(false)
 		get_node("show_menu").play("show_menu")
 		if player.is_grounded:
-			player.current_dir = 0
+			player.go_to_dir(0, true)
 
 func hide_menu(object=null):
 	if menu_shown:
@@ -63,7 +63,7 @@ func start():
 
 func before_start(object=null):
 	if not starting and respawned:
-		player.current_dir = 0
+		player.go_to_dir(0, true)
 		starting = true
 		level_load_tween.quit()
 		level_load_tween.connect("animation_ended", self, "start", Array(), 4)

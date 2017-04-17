@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/event_zone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/levels/level_menu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/background2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=4]
+[ext_resource path="res://scenes/background2.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 
@@ -21,6 +22,16 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 640, 360 ), Vector2( 640, -360 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Sprite:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 0.25, 1 ),
+"update": 0,
+"values": [ 0.6, 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 
@@ -36,6 +47,16 @@ tracks/0/keys = {
 "transitions": FloatArray( 0.25, 1 ),
 "update": 0,
 "values": [ Vector2( 640, -360 ), Vector2( 640, 360 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Sprite:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 0.25, 1 ),
+"update": 0,
+"values": [ 0.0, 0.6 ]
 }
 
 [node name="Menu" type="Node2D"]
@@ -79,6 +100,14 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+
+visibility/opacity = 0.0
+transform/scale = Vector2( 1280, 720 )
+texture = ExtResource( 4 )
+centered = false
+modulate = Color( 0, 0, 0, 1 )
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 
@@ -133,7 +162,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 118.0
+margin/right = 111.0
 margin/bottom = 23.0
 disabled = true
 toggle_mode = true
@@ -151,7 +180,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 27.0
-margin/right = 118.0
+margin/right = 111.0
 margin/bottom = 50.0
 disabled = true
 toggle_mode = true
@@ -161,7 +190,7 @@ text = "Enable sound"
 flat = false
 align = 0
 
-[node name="Background" parent="." instance=ExtResource( 4 )]
+[node name="Background" parent="." instance=ExtResource( 5 )]
 
 [connection signal="timeout" from="Timer" to="." method="init"]
 

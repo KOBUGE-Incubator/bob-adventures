@@ -35,6 +35,7 @@ func load_menu(level=null):
 
 func next_level(param="level"):
 	if not loading_level:
+		player.go_to_dir(0, true)
 		global.level += 1
 		level_load_tween.quit()
 		level_load_tween.connect("animation_ended", self, str("load_",param), [global.level], 4)
