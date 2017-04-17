@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=1]
-[ext_resource path="res://medias/gfx/static/shade.png" type="Texture" id=2]
-[ext_resource path="res://scenes/arrow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/jumppad.gd" type="Script" id=1]
+[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=2]
+[ext_resource path="res://medias/gfx/static/shade.png" type="Texture" id=3]
+[ext_resource path="res://scenes/arrow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://medias/sfx/jumppad.wav" type="Sample" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -25,7 +27,21 @@ tracks/0/keys = {
 "values": [ Color( 0.313726, 0.392157, 0.588235, 0.588235 ), Color( 0.313726, 0.392157, 0.588235, 0.392157 ) ]
 }
 
-[node name="jumppad" type="RigidBody2D"]
+[sub_resource type="SampleLibrary" id=3]
+
+samples/jumppad = {
+"db": -2.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 60, 96 )
+
+[node name="jumppad" type="StaticBody2D"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -33,21 +49,14 @@ shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 1
-mass = 1.0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
 friction = 0.0
 bounce = 0.0
-gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = true
-can_sleep = true
-velocity/linear = Vector2( 0, -1200 )
-velocity/angular = 0.0
-damp_override/linear = 0.0
-damp_override/angular = 0.0
+script/script = ExtResource( 1 )
+x = 0
+y = -1200
+current_dir = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -58,18 +67,18 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 128, 128 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
 
 [node name="Shade" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, -192 )
 transform/scale = Vector2( 120, 1 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 flip_v = true
 modulate = Color( 0.313726, 0.392157, 0.588235, 0.588235 )
 
-[node name="Arrow" parent="." instance=ExtResource( 3 )]
+[node name="Arrow" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -256 )
 
@@ -83,5 +92,35 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = "idle"
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 512.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 3 )
+config/pitch_random = 0.01
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="Area2D" to="." method="active_jumppad"]
 
 

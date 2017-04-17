@@ -9,6 +9,8 @@ var debug_infinite_jump = false
 var local_ground_position = Vector2(0, 0)
 var current_dir = 0
 var is_grounded = false
+var on_jumppad = false
+
 
 const jump_speed = 800
 const wall_jump_speed = 600
@@ -50,15 +52,14 @@ func _fixed_process(delta):
 	
 	# constant velocity on ground
 	if is_grounded:
-		set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
+		if not on_jumppad:
+			set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
 	else:
+		on_jumppad = false
 		### Override velocity to stop on a collision
 		if abs(get_linear_velocity().x) < 20:
 			set_linear_velocity(Vector2(0, get_linear_velocity().y))
 			current_dir = 0
-		### Change direction if speed is different from current_dir (for jumppads)
-		if get_linear_velocity().x/current_dir < 0:
-			current_dir = -current_dir
 	
 	if debug_infinite_jump:
 		is_grounded = true
@@ -70,7 +71,10 @@ func _fixed_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
+		if root.get_node("World") != null:
+			root.get_node("World").next_level("menu")
+		else:
+			get_tree().quit()
 	elif event.is_action_pressed("fullscreen"):
 		OS.set_window_fullscreen(!OS.is_window_fullscreen())
 	
@@ -85,7 +89,7 @@ func _input(event):
 	
 	if global.debug:
 		if event.is_action_pressed("debug[next_level]"):
-			get_parent().next_level()
+			root.get_node("world").next_level()
 		elif event.is_action_released("debug[infinite_jumps]"):
 			debug_infinite_jump = !debug_infinite_jump
 
@@ -101,19 +105,23 @@ func jump():
 		var velocity_add = 0
 		if get_linear_velocity().y < 0:
 			velocity_add = int(get_linear_velocity().y/3)
-		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed+velocity_add) )
+		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed+velocity_add))
+		animation_player.play("jump")
+		PlaySound("jump")
 	else:
 		### If right, go left, if left, go right (wall-jump)
 		if side_rays[0].is_colliding() and side_rays[0].get_collider():
 			current_dir = 1
 			set_linear_velocity(Vector2(wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
-			animation_player.get_animation("jump").track_set_key_value(1, 0, 30)
-			animation_player.play("jump")
+			animation_player.get_animation("walljump").track_set_key_value(1, 0, 30)
+			animation_player.play("walljump")
+			PlaySound("walljump")
 		if side_rays[1].is_colliding() and side_rays[1].get_collider():
 			current_dir = -1
 			set_linear_velocity(Vector2(-wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
-			animation_player.get_animation("jump").track_set_key_value(1, 0, -30)
-			animation_player.play("jump")
+			animation_player.get_animation("walljump").track_set_key_value(1, 0, -30)
+			animation_player.play("walljump")
+			PlaySound("walljump")
 
 func go_to_dir(dir):
 	if current_dir == -dir or abs(get_linear_velocity().x) <= air_speed or dir == 0  and not is_grounded:
@@ -121,3 +129,7 @@ func go_to_dir(dir):
 		set_linear_velocity(Vector2(air_speed*dir, get_linear_velocity().y))
 	else:
 		current_dir = dir
+
+func PlaySound(sound):
+	if global.sound:
+		get_node("SamplePlayer").play(sound)

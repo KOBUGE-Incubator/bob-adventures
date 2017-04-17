@@ -1,24 +1,28 @@
 extends Node2D
 
-onready var player = get_node("Player")
-onready var level_load_tween = get_parent().get_node("level_load")
+onready var player = root.get_node("Player")
+onready var level_load_tween =root.get_node("level_load")
 onready var animation1 = get_node("event_zone/AnimationPlayer").get_animation("idle").duplicate()
 onready var animation2 = get_node("event_zone1/AnimationPlayer").get_animation("idle").duplicate()
 
 onready var animator1 = get_node("event_zone/AnimationPlayer")
 onready var animator2 = get_node("event_zone1/AnimationPlayer")
 
-onready var music = get_node("../StreamPlayer")
+onready var music = root.get_node("StreamPlayer")
 onready var music_button = get_node("CanvasLayer/Control/VBoxContainer/music")
+onready var sound_button = get_node("CanvasLayer/Control/VBoxContainer/sound")
 
 var respawned = false
 var starting = false
 var menu_shown = false
 
 func _ready():
-	if global.music and not music.is_playing():
+	if global.music:
 		music_button.set_pressed(true)
-		music.play()
+		if not music.is_playing():
+			music.play()
+	if global.sound:
+		sound_button.set_pressed(true)
 	get_node("Background").reload_colors()
 	animation1.track_set_key_value(0, 0, Color(0.5, 1, 0.7, 0.6))
 	animation1.track_set_key_value(0, 1, Color(0.5, 1, 0.7, 0.1))
@@ -40,23 +44,26 @@ func _ready():
 func show_menu(object=null):
 	if not menu_shown:
 		menu_shown = true
+		sound_button.set_disabled(false)
 		music_button.set_disabled(false)
 		get_node("show_menu").play("show_menu")
-		player.current_dir = 0
-		player.set_linear_velocity(Vector2(0,0))
+		if player.is_grounded:
+			player.current_dir = 0
 
 func hide_menu(object=null):
 	if menu_shown:
 		music_button.set_disabled(true)
+		sound_button.set_disabled(true)
 		menu_shown = false
 		get_node("show_menu").play("hide_menu")
 
 func start():
-	get_parent().add_child(load("res://scenes/world.xscn").instance())
+	root.add_child(load("res://scenes/world.tscn").instance())
 	queue_free()
 
 func before_start(object=null):
 	if not starting and respawned:
+		player.current_dir = 0
 		starting = true
 		level_load_tween.quit()
 		level_load_tween.connect("animation_ended", self, "start", Array(), 4)
@@ -70,3 +77,6 @@ func set_music():
 		music.play()
 	else:
 		music.stop()
+
+func set_sound():
+	global.sound = !global.sound

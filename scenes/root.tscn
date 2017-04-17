@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://medias/sfx/music/test1.ogg" type="AudioStream" id=1]
 [ext_resource path="res://scenes/level_load.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/main_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/main_menu.tscn" type="PackedScene" id=4]
 
 [node name="Root" type="Node"]
 
@@ -19,6 +20,8 @@ stream/buffering_ms = 500
 
 [node name="level_load" parent="." instance=ExtResource( 2 )]
 
-[node name="Menu" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="Menu" parent="." instance=ExtResource( 4 )]
 
 

@@ -6,5 +6,5 @@ func _ready():
 
 func _on_body_enter(body):
 	if body.get_name() == "Player":
-		get_node("../../").next_level()
-		get_node("../../").loading_level = true
+		root.get_node("World").next_level()
+		root.get_node("World").loading_level = true
