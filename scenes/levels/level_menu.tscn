@@ -63,27 +63,25 @@ modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
 [node name="jumppad" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 384, 832 )
-y = -1500
+y = -1600
 
 [node name="jumppad1" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -384, 832 )
-y = -1500
+y = -1600
 
 [node name="jumppad2" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 768, 256 )
+transform/pos = Vector2( 768, 192 )
 transform/rot = 45.0
 x = -500
-y = -1300
 current_dir = -1
 
 [node name="jumppad3" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( -768, 256 )
+transform/pos = Vector2( -768, 192 )
 transform/rot = -45.0
 x = 500
-y = -1300
 current_dir = 1
 
 

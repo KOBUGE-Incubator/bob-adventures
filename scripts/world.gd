@@ -3,7 +3,7 @@ extends Node2D
 var loading_level = false
 var current_level
 onready var player = root.get_node("Player")
-onready var level_load_tween = root.get_node("level_load")
+onready var level_load_anim = root.get_node("level_load/AnimationPlayer")
 
 func _ready():
 	load_level(global.level)
@@ -22,7 +22,6 @@ func load_level(level_number):
 		player.spawn = level_loaded.get_node("spawn").get_pos()
 		player.limit = level_loaded.get_node("limit").get_pos().y
 		player.respawn()
-		level_load_tween.enter()
 		loading_level = false
 	else:
 		print(str("level_",str(global.level), " doesn't exist"))
@@ -33,9 +32,14 @@ func load_menu(level=null):
 	root.add_child(load("res://scenes/main_menu.tscn").instance())
 	queue_free()
 
-func next_level(param="level"):
+func preload_level(param, level=null):
 	if not loading_level:
+		player.respawned = false
 		player.go_to_dir(0, true)
+		level_load_anim.play("exit")
+		level_load_anim.connect("finished", self, str("load_",param), [level], 4)
+
+func next_level():
+	if not loading_level:
 		global.level += 1
-		level_load_tween.quit()
-		level_load_tween.connect("animation_ended", self, str("load_",param), [global.level], 4)
+		preload_level("level", global.level)

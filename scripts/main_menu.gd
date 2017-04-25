@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player = root.get_node("Player")
-onready var level_load_tween =root.get_node("level_load")
+onready var level_load_anim = root.get_node("level_load/AnimationPlayer")
 onready var animation1 = get_node("event_zone/AnimationPlayer").get_animation("idle").duplicate()
 onready var animation2 = get_node("event_zone1/AnimationPlayer").get_animation("idle").duplicate()
 
@@ -34,10 +34,10 @@ func _ready():
 	animator2.add_animation("idle2", animation2)
 	animator1.play("idle2")
 	animator2.play("idle2")
-	level_load_tween.enter()
 	player.spawn = get_node("level_menu/spawn").get_pos()
 	player.limit = get_node("level_menu/limit").get_pos().y
 	player.respawn()
+	level_load_anim.play("enter")
 	get_node("event_zone").connect("body_exit", self, "hide_menu")
 	get_node("event_zone").connect("body_enter", self, "show_menu")
 
@@ -64,9 +64,10 @@ func start():
 func before_start(object=null):
 	if not starting and respawned:
 		player.go_to_dir(0, true)
+		player.can_move = false
 		starting = true
-		level_load_tween.quit()
-		level_load_tween.connect("animation_ended", self, "start", Array(), 4)
+		level_load_anim.play("exit")
+		level_load_anim.connect("finished", self, "start", Array(), 4)
 
 func init():
 	respawned = true

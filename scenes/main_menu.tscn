@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://scenes/event_zone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/levels/level_menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=4]
-[ext_resource path="res://scenes/background2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/OpenSans-Light.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/OpenSans-Semibold.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scenes/backgrounds/background2.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -111,6 +113,7 @@ modulate = Color( 0, 0, 0, 1 )
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -126,15 +129,16 @@ anchor/left = 3
 anchor/top = 3
 anchor/right = 3
 anchor/bottom = 3
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 0.4, 0.4 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 180.0
-margin/top = 50.0
-margin/right = 20.0
-margin/bottom = 20.0
+margin/left = 270.0
+margin/top = 160.0
+margin/right = -1010.0
+margin/bottom = -200.0
+custom_fonts/font = ExtResource( 5 )
 text = "Future Main Menu"
 align = 1
 valign = 1
@@ -144,6 +148,7 @@ max_lines_visible = -1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -162,8 +167,9 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 111.0
-margin/bottom = 23.0
+margin/right = 208.0
+margin/bottom = 47.0
+custom_fonts/font = ExtResource( 6 )
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
@@ -179,9 +185,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 27.0
-margin/right = 111.0
-margin/bottom = 50.0
+margin/top = 51.0
+margin/right = 208.0
+margin/bottom = 98.0
+custom_fonts/font = ExtResource( 6 )
 disabled = true
 toggle_mode = true
 enabled_focus_mode = 2
@@ -190,7 +197,7 @@ text = "Enable sound"
 flat = false
 align = 0
 
-[node name="Background" parent="." instance=ExtResource( 5 )]
+[node name="Background" parent="." instance=ExtResource( 7 )]
 
 [connection signal="timeout" from="Timer" to="." method="init"]
 
