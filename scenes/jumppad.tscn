@@ -56,7 +56,6 @@ bounce = 0.0
 script/script = ExtResource( 1 )
 x = 0
 y = -1200
-current_dir = 0
 override = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -122,6 +121,35 @@ angular_damp = 1.0
 shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+visibility/opacity = 0.1
+transform/pos = Vector2( 0, -64 )
+config/amount = 64
+config/lifetime = 1.0
+config/emit_timeout = 0.1
+config/emitting = false
+config/process_mode = 1
+config/explosiveness = 0.01
+params/direction = 360.0
+params/spread = 180.0
+params/linear_velocity = 200.0
+params/spin_velocity = 10.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 40.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.5
+randomness/spin_velocity = 1.0
 
 [connection signal="body_enter" from="Area2D" to="." method="active_jumppad"]
 

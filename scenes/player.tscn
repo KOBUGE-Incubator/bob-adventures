@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://medias/gfx/static/dust_particle.png" type="Texture" id=2]
+[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=2]
 [ext_resource path="res://medias/gfx/static/bob.png" type="Texture" id=3]
 [ext_resource path="res://medias/sfx/jump.wav" type="Sample" id=4]
 [ext_resource path="res://medias/sfx/walljump.wav" type="Sample" id=5]
@@ -13,7 +13,6 @@ points = Vector2Array( 0, -30, 29, -29, 30, 0, 29, 29, 0, 30, -29, 29, -30, 0, -
 
 [sub_resource type="Animation" id=2]
 
-resource/name = "jump"
 length = 0.3
 loop = false
 step = 0.1
@@ -60,7 +59,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=3]
 
-resource/name = "jumppad"
 length = 0.4
 loop = false
 step = 0.1
@@ -173,7 +171,6 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=5]
 
-resource/name = "idle"
 length = 0.15
 loop = true
 step = 0.1
@@ -200,7 +197,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=6]
 
-resource/name = "enter"
 length = 0.6
 loop = false
 step = 0.1
@@ -227,7 +223,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=7]
 
-resource/name = "exit"
 length = 0.01
 loop = false
 step = 0.1
@@ -327,32 +322,62 @@ __meta__ = {
 
 [node name="Particles2D" type="Particles2D" parent="."]
 
-transform/pos = Vector2( 0, 28 )
+transform/pos = Vector2( 0, 18 )
 config/amount = 16
-config/lifetime = 0.4
+config/lifetime = 0.3
 config/emitting = false
 config/process_mode = 1
 config/local_space = false
 config/texture = ExtResource( 2 )
 params/direction = 0.0
 params/spread = 0.0
-params/linear_velocity = 0.0
-params/spin_velocity = 0.5
+params/linear_velocity = 50.0
+params/spin_velocity = 100.0
 params/orbit_velocity = 0.0
 params/gravity_direction = 0.0
-params/gravity_strength = 0.0
+params/gravity_strength = 100.0
 params/radial_accel = 0.0
 params/tangential_accel = 0.0
 params/damping = 0.0
 params/initial_angle = 0.0
-params/initial_size = 0.5
+params/initial_size = 32.0
 params/final_size = 0.0
 params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
+randomness/linear_velocity = 1.0
 randomness/spin_velocity = 1.0
-randomness/initial_size = 0.5
-color/color = Color( 0.836078, 0.659333, 0.240431, 0.784314 )
+color/color = Color( 0.240431, 0.668552, 0.836078, 0.392157 )
+
+[node name="Impulsion" type="Particles2D" parent="."]
+
+transform/pos = Vector2( 0, 28 )
+config/amount = 64
+config/lifetime = 1.0
+config/emit_timeout = 0.2
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/texture = ExtResource( 2 )
+params/direction = 360.0
+params/spread = 180.0
+params/linear_velocity = 100.0
+params/spin_velocity = 100.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 200.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 32.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+color/color = Color( 1, 0.588235, 0.490196, 0.392157 )
 
 [node name="Sprite1" type="Sprite" parent="."]
 
@@ -393,6 +418,8 @@ drag_margin/right = 0.0
 drag_margin/bottom = 0.0
 
 [node name="arrays" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="ground" type="RayCast2D" parent="arrays"]
 

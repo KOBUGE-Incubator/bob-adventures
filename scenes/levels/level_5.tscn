@@ -25,7 +25,7 @@ tile_data = IntArray( -851949, -1610612735, -786413, -1610612736, -720877, -1610
 
 [node name="end" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 2432, -576 )
+transform/pos = Vector2( 2432, -512 )
 
 [node name="spawn" type="Position2D" parent="."]
 

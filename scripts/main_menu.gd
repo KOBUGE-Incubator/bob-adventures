@@ -23,7 +23,6 @@ func _ready():
 			music.play()
 	if global.sound:
 		sound_button.set_pressed(true)
-	get_node("Background").reload_colors()
 	animation1.track_set_key_value(0, 0, Color(0.5, 1, 0.7, 0.6))
 	animation1.track_set_key_value(0, 1, Color(0.5, 1, 0.7, 0.1))
 	animation2.track_set_key_value(0, 0, Color(1, 0.6, 0.4, 0.6))
@@ -63,7 +62,6 @@ func start():
 
 func before_start(object=null):
 	if not starting and respawned:
-		player.go_to_dir(0, true)
 		player.can_move = false
 		starting = true
 		level_load_anim.play("exit")

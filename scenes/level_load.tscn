@@ -52,7 +52,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=2]
 
 resource/name = "exit"
-length = 0.3
+length = 0.4
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -107,7 +107,6 @@ scale = Vector2( 1, 1 )
 
 [node name="Sprite" type="Sprite" parent="Node"]
 
-visibility/visible = false
 transform/scale = Vector2( 640, 360 )
 texture = ExtResource( 1 )
 centered = false
@@ -115,7 +114,6 @@ modulate = Color( 0.780392, 0.819608, 0.741176, 1 )
 
 [node name="Sprite1" type="Sprite" parent="Node"]
 
-visibility/visible = false
 transform/pos = Vector2( 640, 0 )
 transform/scale = Vector2( 640, 360 )
 texture = ExtResource( 1 )
@@ -124,7 +122,6 @@ modulate = Color( 0.780392, 0.819608, 0.741176, 1 )
 
 [node name="Sprite2" type="Sprite" parent="Node"]
 
-visibility/visible = false
 transform/pos = Vector2( 0, 360 )
 transform/scale = Vector2( 640, 360 )
 texture = ExtResource( 1 )
@@ -133,7 +130,6 @@ modulate = Color( 0.780392, 0.819608, 0.741176, 1 )
 
 [node name="Sprite3" type="Sprite" parent="Node"]
 
-visibility/visible = false
 transform/pos = Vector2( 640, 360 )
 transform/scale = Vector2( 640, 360 )
 texture = ExtResource( 1 )

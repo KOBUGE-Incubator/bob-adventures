@@ -35,7 +35,6 @@ func load_menu(level=null):
 func preload_level(param, level=null):
 	if not loading_level:
 		player.respawned = false
-		player.go_to_dir(0, true)
 		level_load_anim.play("exit")
 		level_load_anim.connect("finished", self, str("load_",param), [level], 4)
 

@@ -27,7 +27,7 @@ tile_data = IntArray( -3014671, 2, -3014670, 2, -3014669, 2, -3014668, 2, -30146
 
 [node name="end" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 1344, -1472 )
+transform/pos = Vector2( 1344, -1344 )
 
 [node name="spawn" type="Position2D" parent="."]
 
@@ -57,50 +57,62 @@ visibility/behind_parent = true
 [node name="door" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -1920 )
+random_color = true
 
 [node name="door1" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -1664 )
+random_color = true
 
 [node name="door2" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -1408 )
+random_color = true
 
 [node name="door3" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -1152 )
+random_color = true
 
 [node name="door4" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -896 )
+random_color = true
 
 [node name="door5" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -640 )
+random_color = true
 
 [node name="door6" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -384 )
+random_color = true
 
 [node name="door7" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -128 )
+random_color = true
 
 [node name="door8" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -2944 )
+random_color = true
 
 [node name="door9" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -2688 )
+random_color = true
 
 [node name="door10" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -2432 )
+random_color = true
 
 [node name="door11" parent="doors" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -2176 )
+random_color = true
 
 [node name="Arrow" parent="." instance=ExtResource( 5 )]
 
@@ -113,6 +125,6 @@ transform/pos = Vector2( 257, -805 )
 transform/rot = -45.0
 x = 950
 y = -1450
-current_dir = 1
+override = true
 
 

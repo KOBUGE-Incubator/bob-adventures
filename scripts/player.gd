@@ -72,7 +72,7 @@ func _fixed_process(delta):
 		is_grounded = true
 	
 	### activate particles on a plane ground (not on ramps)
-	if is_grounded and colliders == 2:
+	if is_grounded: #and colliders == 2:
 		get_node("Particles2D").set_emitting(true)
 	else:
 		get_node("Particles2D").set_emitting(false)
@@ -128,6 +128,7 @@ func jump():
 		if get_linear_velocity().y < 0:
 			velocity_add = int(get_linear_velocity().y/3)
 		set_linear_velocity(Vector2(get_linear_velocity().x, -jump_speed+velocity_add))
+		jump_particles(Vector2(0, 28))
 		animation_player.play("jump")
 		PlaySound("jump")
 	else:
@@ -140,10 +141,16 @@ func jump():
 				else:
 					current_dir = -1
 					set_linear_velocity(Vector2(-wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
+				jump_particles(Vector2(28*(-current_dir), 0))
 				animation_player.get_animation("walljump").track_set_key_value(3, 0, -4*current_dir)
 				animation_player.play("walljump")
 				set_dir(current_dir)
 				PlaySound("walljump")
+
+func jump_particles(pos):
+	get_node("Impulsion").set_emitting(false)
+	get_node("Impulsion").set_pos(pos)
+	get_node("Impulsion").set_emitting(true)
 
 func go_to_dir(dir, smooth=false):
 	if current_dir == -dir or abs(get_linear_velocity().x) <= air_speed or dir == 0:
