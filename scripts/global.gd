@@ -1,6 +1,6 @@
 extends Node
 
-const debug = true
+const debug = false
 
 var music = true
 var sound = true

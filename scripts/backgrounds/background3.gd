@@ -1,24 +1,20 @@
 extends ParallaxBackground
 
-onready var anim = get_node("AnimationPlayer")
+const bar_class = preload("res://scenes/backgrounds/background_bar.tscn")
 
 func _ready():
-	rand_colors()
-	idle2()
-
-func rand_colors():
-	for node in get_children():
-		if node extends Sprite:
-			node.set_modulate(Color(rand_range(0.2,0.5),rand_range(0.2,0.5),rand_range(0.2,0.5)))
-
-func idle1():
-	get_node("Sprite2").set_modulate(Color(rand_range(0.2,0.5),rand_range(0.2,0.5),rand_range(0.2,0.5)))
-	get_node("Sprite3").set_modulate(Color(rand_range(0.2,0.5),rand_range(0.2,0.5),rand_range(0.2,0.5)))
-	anim.play("idle1")
-	anim.connect("finished", self, "idle2", Array(), 4)
-
-func idle2():
-	get_node("Sprite").set_modulate(Color(rand_range(0.2,0.5),rand_range(0.2,0.5),rand_range(0.2,0.5)))
-	get_node("Sprite1").set_modulate(Color(rand_range(0.2,0.5),rand_range(0.2,0.5),rand_range(0.2,0.5)))
-	anim.play("idle2")
-	anim.connect("finished", self, "idle1", Array(), 4)
+	for i in range(20):
+		var rand_val = 12+(randi() % 80)/4
+		var rand_color = Color(rand_range(0.1, 0.6),rand_range(0.1, 0.6),rand_range(0.1, 0.6))
+		for j in range(3):
+			var bar = bar_class.instance()
+			if (j and j != 2):
+				bar.set_modulate(Color(rand_range(0.1, 0.6),rand_range(0.1, 0.6),rand_range(0.1, 0.6)))
+			else:
+				bar.set_modulate(rand_color)
+			bar.set_pos(Vector2(1280*j, 36*i))
+			bar.set_scale(Vector2(1280, 36))
+			bar.set_opacity(0.75)
+			add_child(bar)
+			bar.get_node("Tween").interpolate_property(bar, "transform/pos", Vector2(1280*j, 36*i), Vector2(1280*(j-2), 36*i), rand_val, 0, 0)
+			bar.get_node("Tween").start()

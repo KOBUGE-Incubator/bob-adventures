@@ -1,5 +1,6 @@
-# player.gd -> living_object.gd -> RigidBody2D
-extends RigidBody2D#"living_object.gd"
+extends RigidBody2D
+
+const bullet = preload("res://scenes/player/shot.tscn")
 
 #On debug = true:
 #F5 : previous_level
@@ -13,6 +14,7 @@ var is_grounded = false
 var on_jumppad = false
 var was_on_jumppad = false
 var can_move = false
+var shot = false
 
 const jump_speed = 800
 const wall_jump_speed = 600
@@ -61,6 +63,7 @@ func _fixed_process(delta):
 				was_on_jumppad = false
 				set_dir(current_dir)
 			set_linear_velocity(Vector2(current_dir*walk_speed, get_linear_velocity().y))
+		shot = false
 	else:
 		on_jumppad = false
 		### Override velocity to stop on a collision
@@ -85,6 +88,9 @@ func _input(event):
 			if root.get_node("Menu").menu_shown:
 				root.get_node("Menu").hide_menu()
 			else:
+				if get_node("../AnimationPlayer").is_playing(): return
+				get_node("../AnimationPlayer").play("quit")
+				yield(get_node("../AnimationPlayer"), "finished")
 				get_tree().quit()
 	elif event.is_action_pressed("fullscreen"):
 		OS.set_window_fullscreen(!OS.is_window_fullscreen())
@@ -124,6 +130,7 @@ func respawn():
 
 func jump():
 	if is_grounded:
+		shot = false
 		var velocity_add = 0
 		if get_linear_velocity().y < 0:
 			velocity_add = int(get_linear_velocity().y/3)
@@ -135,6 +142,7 @@ func jump():
 		### If right, go left, if left, go right (wall-jump)
 		for i in range(side_rays.size()):
 			if side_rays[i].is_colliding() and side_rays[i].get_collider():
+				shot = false
 				if i == 0:
 					current_dir = 1
 					set_linear_velocity(Vector2(wall_jump_speed, (-jump_speed)+(get_linear_velocity().y/2)))
@@ -146,6 +154,14 @@ func jump():
 				animation_player.play("walljump")
 				set_dir(current_dir)
 				PlaySound("walljump")
+				return
+		if not shot:
+			shot = true
+			for i in range(4):
+				var bullet_class = bullet.instance()
+				bullet_class.set_pos(get_pos())
+				get_parent().add_child(bullet_class)
+				bullet_class.shot(Vector2(cos(i*PI/2)*384, sin(i*PI/2)*384))
 
 func jump_particles(pos):
 	get_node("Impulsion").set_emitting(false)

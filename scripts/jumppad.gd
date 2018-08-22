@@ -9,6 +9,7 @@ func active_jumppad(body):
 		body.is_grounded = false
 		body.on_jumppad = true
 		body.was_on_jumppad = true
+		body.shot = false
 ### with that, X is reset on each activation
 		var X = x
 		if X == 0 and not override:
