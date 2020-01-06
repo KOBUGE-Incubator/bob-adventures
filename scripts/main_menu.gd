@@ -17,11 +17,14 @@ var starting = false
 var menu_shown = false
 
 func _ready():
-	if global.music:
+	global.launch()
+	get_node("../Timer/Label").set_text( str( global.config["bestTime"]/600 ) + ":" + str( (global.config["bestTime"]/10) % 60 ) + ":" + str( global.config["bestTime"] % 10 ) )
+	
+	if global.config["music"]:
 		music_button.set_pressed(true)
 		if not music.is_playing():
 			music.play()
-	if global.sound:
+	if global.config["sound"]:
 		sound_button.set_pressed(true)
 	animation1.track_set_key_value(0, 0, Color(0.5, 1, 0.7, 0.6))
 	animation1.track_set_key_value(0, 1, Color(0.5, 1, 0.7, 0.1))
@@ -58,6 +61,7 @@ func hide_menu(object=null):
 
 func start():
 	root.add_child(load("res://scenes/world.tscn").instance())
+	global.tmpTime = 0;
 	queue_free()
 
 func before_start(object=null):
@@ -71,11 +75,11 @@ func init():
 	respawned = true
 
 func set_music():
-	global.music = !global.music
-	if global.music:
+	global.config["music"] = !global.config["music"]
+	if global.config["music"]:
 		music.play()
 	else:
 		music.stop()
 
 func set_sound():
-	global.sound = !global.sound
+	global.config["sound"] = !global.config["sound"]

@@ -193,5 +193,5 @@ func set_dir(dir):
 		walking.set_speed(current_dir)
 
 func PlaySound(sound):
-	if global.sound:
+	if global.config["sound"]:
 		get_node("SamplePlayer").play(sound)

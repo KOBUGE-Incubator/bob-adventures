@@ -113,7 +113,6 @@ modulate = Color( 0, 0, 0, 1 )
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2

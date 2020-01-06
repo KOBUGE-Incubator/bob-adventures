@@ -22,5 +22,5 @@ func active_jumppad(body):
 		body.walking.set_speed(body.before_dir*1.5)
 		get_node("Particles2D").set_color(Color(rand_range(0.4, 0.8), rand_range(0.4, 0.8), rand_range(0.4, 0.8)))
 		get_node("Particles2D").set_emitting(true)
-		if global.sound:
+		if global.config["sound"]:
 			get_node("SamplePlayer2D").play("jumppad")

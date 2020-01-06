@@ -7,6 +7,7 @@ onready var level_load_anim = root.get_node("level_load/AnimationPlayer")
 
 func _ready():
 	load_level(global.level)
+	get_node("../Timer/Timer").start()
 
 func load_level(level_number):
 	var level_load = load(str("res://scenes/levels/level_", str(level_number), ".tscn"))
@@ -25,6 +26,10 @@ func load_level(level_number):
 		loading_level = false
 	else:
 		print(str("level_",str(global.level), " doesn't exist"))
+		get_node("../Timer/Timer").stop()
+		if( global.tmpTime < global.config["bestTime"] || global.config["bestTime"] == 0 ):
+			global.config["bestTime"] = global.tmpTime
+			global.save_config()
 		load_menu()
 
 func load_menu(level=null):
