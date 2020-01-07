@@ -26,13 +26,13 @@ func load_level(level_number):
 		loading_level = false
 	else:
 		print(str("level_",str(global.level), " doesn't exist"))
-		get_node("../Timer/Timer").stop()
-		if( global.tmpTime < global.config["bestTime"] || global.config["bestTime"] == 0 ):
-			global.config["bestTime"] = global.tmpTime
-			global.save_config()
 		load_menu()
 
 func load_menu(level=null):
+	get_node("../Timer/Timer").stop()
+	if( global.tmpTime < global.config["bestTime"] || global.config["bestTime"] == 0 ):
+		global.config["bestTime"] = global.tmpTime
+		global.save_config()
 	global.level = 1
 	root.add_child(load("res://scenes/main_menu.tscn").instance())
 	queue_free()
