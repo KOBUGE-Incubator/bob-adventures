@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Objects/end.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Objects/jumppad.tscn" type="PackedScene" id=3]
+
+
+[node name="level_3" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -1966083, 1073741827, 0, -1966082, 2, 0, -1966081, 2, 0, -2031616, 2, 0, -2031615, 2, 0, -2031614, 1610612739, 0, -1900548, 1073741825, 0, -1900547, 1073741824, 0, -1900546, 1073741824, 0, -1900545, 1073741824, 0, -1966080, 1073741824, 0, -1966079, 1073741824, 0, -1966078, 1073741824, 0, -1966077, 1610612737, 0, -1572875, 1073741827, 0, -1572874, 2, 0, -1572873, 2, 0, -1572872, 2, 0, -1572871, 2, 0, -1572870, 2, 0, -1572869, 2, 0, -1572868, 1610612739, 0, -1638398, 1073741827, 0, -1638397, 2, 0, -1638396, 2, 0, -1638395, 2, 0, -1638394, 2, 0, -1638393, 2, 0, -1638392, 2, 0, -1638391, 1610612739, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 196602, 2, 0, 196603, 2, 0, 196604, 2, 0, 196605, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0 )
+
+[node name="end" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -1856 )
+scale = Vector2( 1, -1 )
+
+[node name="spawn" type="Position2D" parent="."]
+
+[node name="limit" type="Position2D" parent="."]
+position = Vector2( 0, 2048 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="jumppads" type="Node2D" parent="."]
+
+[node name="jumppad" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( 448, 128 )
+y = -2600
+
+[node name="jumppad1" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( -448, 128 )
+y = -2600
+
+[node name="jumppad2" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( 768, -832 )
+rotation = -1.8326
+x = -2200
+y = 200
+override = true
+
+[node name="jumppad3" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( -768, -832 )
+rotation = -4.45059
+x = 2200
+y = 200
+override = true
+
+[node name="jumppad4" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( -64, -512 )
+y = -2400
+override = true
+
+[node name="jumppad5" parent="jumppads" instance=ExtResource( 3 )]
+position = Vector2( 64, -512 )
+y = -2400
+override = true

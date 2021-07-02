@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=1]
+
+[node name="bar" type="Sprite"]
+scale = Vector2( 16, 720 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Tween" type="Tween" parent="."]

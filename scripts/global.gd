@@ -1,6 +1,6 @@
 extends Node
 
-const debug = false
+const debug = true
 
 const default_config = {
 	music = true,
@@ -14,9 +14,16 @@ var config = {}
 var level = 1
 var tmpTime = 0;
 
+
 func launch():
 	load_config()
 	randomize()
+
+
+func set_config( name, value ):
+	config[ name ] = value
+	save_config()
+
 
 func load_config():
 	var f = File.new()
@@ -33,11 +40,11 @@ func load_config():
 				config[option] = default_config[option]
 	
 	f.close()
-	print(config)
+	print( config )
 
 
 func save_config():
 	var f = File.new()
-	var err = f.open_encrypted_with_pass("res://bobsave.save", File.WRITE, "Bob")
-	f.store_var(config)
+	var _err = f.open_encrypted_with_pass( "res://bobsave.save", File.WRITE, "Bob" )
+	f.store_var( config )
 	f.close()

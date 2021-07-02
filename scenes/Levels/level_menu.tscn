@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://medias/gfx/static/square.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Objects/jumppad.tscn" type="PackedScene" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="PhysicsMaterial" id=2]
+friction = 0.0
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.0
+
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+
+[node name="level_menu" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_use_kinematic = true
+collision_friction = 0.0
+format = 1
+tile_data = PoolIntArray( -851982, 2, 0, -851981, 2, 0, -851980, 2, 0, -851979, 2, 0, -851978, 2, 0, -851977, 2, 0, -851976, 2, 0, -851975, 2, 0, -851974, 2, 0, -851973, 2, 0, -851972, 2, 0, -851971, 2, 0, -851970, 2, 0, -851969, 2, 0, -917504, 2, 0, -917503, 2, 0, -917502, 2, 0, -917501, 2, 0, -917500, 2, 0, -917499, 2, 0, -917498, 2, 0, -917497, 2, 0, -917496, 2, 0, -917495, 2, 0, -917494, 2, 0, -917493, 2, 0, -917492, 2, 0, -917491, 2, 0, -786446, 2, 0, -786445, 2, 0, -786444, 2, 0, -786443, 2, 0, -786442, 2, 0, -786441, 2, 0, -786440, 2, 0, -786439, 2, 0, -786438, 2, 0, -786437, 2, 0, -786436, 2, 0, -786435, 2, 0, -786434, 2, 0, -786433, 2, 0, -851968, 2, 0, -851967, 2, 0, -851966, 2, 0, -851965, 2, 0, -851964, 2, 0, -851963, 2, 0, -851962, 2, 0, -851961, 2, 0, -851960, 2, 0, -851959, 2, 0, -851958, 2, 0, -851957, 2, 0, -851956, 2, 0, -851955, 2, 0, -720910, 2, 0, -720909, 2, 0, -786420, 2, 0, -786419, 2, 0, -655374, 2, 0, -655373, 2, 0, -720884, 2, 0, -720883, 2, 0, -589838, 2, 0, -589837, 2, 0, -655348, 2, 0, -655347, 2, 0, -524302, 2, 0, -524301, 2, 0, -589812, 2, 0, -589811, 2, 0, -458766, 2, 0, -458765, 2, 0, -524276, 2, 0, -524275, 2, 0, -393230, 2, 0, -393229, 2, 0, -458740, 2, 0, -458739, 2, 0, -327694, 2, 0, -327693, 2, 0, -393204, 2, 0, -393203, 2, 0, -262158, 2, 0, -262157, 2, 0, -327668, 2, 0, -327667, 2, 0, -196622, 2, 0, -196621, 2, 0, -262132, 2, 0, -262131, 2, 0, -131086, 2, 0, -131085, 2, 0, -196596, 2, 0, -196595, 2, 0, -65550, 2, 0, -65549, 2, 0, -131060, 2, 0, -131059, 2, 0, -14, 2, 0, -13, 2, 0, -65524, 2, 0, -65523, 2, 0, 65522, 2, 0, 65523, 2, 0, 65534, 1, 0, 65535, 0, 0, 0, 0, 0, 1, 536870913, 0, 12, 2, 0, 13, 2, 0, 131058, 2, 0, 131059, 2, 0, 65548, 2, 0, 65549, 2, 0, 196594, 2, 0, 196595, 2, 0, 131084, 2, 0, 131085, 2, 0, 262130, 2, 0, 262131, 2, 0, 196620, 2, 0, 196621, 2, 0, 327666, 2, 0, 327667, 2, 0, 262156, 2, 0, 262157, 2, 0, 393202, 2, 0, 393203, 2, 0, 327692, 2, 0, 327693, 2, 0, 458738, 2, 0, 458739, 2, 0, 393228, 2, 0, 393229, 2, 0, 524274, 2, 0, 524275, 2, 0, 458764, 2, 0, 458765, 2, 0, 589810, 2, 0, 589811, 2, 0, 524300, 2, 0, 524301, 2, 0, 655346, 2, 0, 655347, 2, 0, 589836, 2, 0, 589837, 2, 0, 720882, 2, 0, 720883, 2, 0, 655372, 2, 0, 655373, 2, 0, 786418, 2, 0, 786419, 2, 0, 720908, 2, 0, 720909, 2, 0, 851954, 2, 0, 851955, 2, 0, 851956, 2, 0, 851957, 2, 0, 851958, 2, 0, 851959, 2, 0, 851960, 2, 0, 851961, 2, 0, 851962, 2, 0, 851963, 2, 0, 851964, 2, 0, 851965, 2, 0, 851966, 2, 0, 851967, 2, 0, 786432, 2, 0, 786433, 2, 0, 786434, 2, 0, 786435, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 2, 0, 786439, 2, 0, 786440, 2, 0, 786441, 2, 0, 786442, 2, 0, 786443, 2, 0, 786444, 2, 0, 786445, 2, 0, 917490, 2, 0, 917491, 2, 0, 917492, 2, 0, 917493, 2, 0, 917494, 2, 0, 917495, 2, 0, 917496, 2, 0, 917497, 2, 0, 917498, 2, 0, 917499, 2, 0, 917500, 2, 0, 917501, 2, 0, 917502, 2, 0, 917503, 2, 0, 851968, 2, 0, 851969, 2, 0, 851970, 2, 0, 851971, 2, 0, 851972, 2, 0, 851973, 2, 0, 851974, 2, 0, 851975, 2, 0, 851976, 2, 0, 851977, 2, 0, 851978, 2, 0, 851979, 2, 0, 851980, 2, 0, 851981, 2, 0 )
+
+[node name="spawn" type="Position2D" parent="."]
+position = Vector2( 0, 500 )
+
+[node name="limit" type="Position2D" parent="."]
+position = Vector2( 0, 1536 )
+
+[node name="decor" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="decor"]
+modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
+position = Vector2( 1280, 0 )
+scale = Vector2( 1024, 1792 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="decor"]
+modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
+position = Vector2( -1280, 0 )
+scale = Vector2( 1024, 1792 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="decor"]
+modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
+position = Vector2( 0, 1280 )
+scale = Vector2( 3072, 1024 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="decor"]
+modulate = Color( 0.392157, 0.431373, 0.431373, 1 )
+position = Vector2( 0, -1280 )
+scale = Vector2( 3072, 1024 )
+texture = ExtResource( 2 )
+
+[node name="jumppad" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384, 832 )
+physics_material_override = SubResource( 1 )
+
+[node name="jumppad1" parent="." instance=ExtResource( 3 )]
+position = Vector2( -384, 832 )
+physics_material_override = SubResource( 2 )
+
+[node name="jumppad2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 768, 192 )
+rotation = -0.785398
+physics_material_override = SubResource( 3 )
+x = -1000
+y = -1000
+override = true
+
+[node name="jumppad3" parent="." instance=ExtResource( 3 )]
+position = Vector2( -768, 192 )
+rotation = 0.785398
+physics_material_override = SubResource( 4 )
+x = 1000
+y = -1000
+override = true

@@ -1,11 +1,10 @@
-[gd_resource type="DynamicFont" load_steps=2 format=1]
+[gd_resource type="DynamicFont" load_steps=1 format=2]
 
 [ext_resource path="res://assets/OpenSans-Light.ttf" type="DynamicFontData" id=1]
 
 [resource]
 
-font/size = 128
-font/use_mipmaps = true
-font/use_filter = true
-font/font = ExtResource( 1 )
-
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )

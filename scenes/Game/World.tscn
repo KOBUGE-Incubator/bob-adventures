@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/Game/world.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Backgrounds/background.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"__editor_plugin_screen__": "2D"
+}
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+
+[node name="levels" type="Node2D" parent="."]

@@ -1,2 +1,2 @@
 # bob-adventures
-A 2D platform-shooter with badass cakes
+A cool 2D platformer
